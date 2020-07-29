@@ -12,12 +12,8 @@ function readUsers(){
         for (let user of users){
             //TODO: make into a function
             const fUser = new User(user.id, user.username)
-            let usersDiv = document.getElementById("users");
-            
-            const newP = document.createElement('p');
-            newP.innerText = fUser.username;
-            usersDiv.appendChild(newP)
-
+            fUser.renderUsers();
         }
     })
 }
+
