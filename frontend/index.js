@@ -1,7 +1,8 @@
 const BASE_URL = "http://127.0.0.1:3000"
 
 document.addEventListener("DOMContentLoaded", () =>{
-    readUsers();
+    //readUsers();
+    readPlants();
 });
 
 //TODO: Change html
@@ -10,10 +11,21 @@ function readUsers(){
     .then(resp => resp.json())
     .then(users => {
         for (let user of users){
-            //TODO: make into a function
             const fUser = new User(user.id, user.username)
             fUser.renderUsers();
         }
     })
 }
 
+function readPlants(){
+    fetch(`${BASE_URL}/plants`)
+    .then(resp => resp.json())
+    .then(plants => {
+        debugger
+        for (let plant of plants){
+            const dbPlant = new Plant(plant.id, plant.name, plant.imgsrc, plant.bloom, plant.zone, plant.water, plant.sunlight)
+            debugger
+            dbPlant.renderPlants();
+        }
+    })
+}

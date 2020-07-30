@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_154622) do
     t.integer "zone"
     t.integer "water"
     t.integer "sunlight"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

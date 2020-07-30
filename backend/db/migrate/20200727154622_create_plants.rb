@@ -7,7 +7,8 @@ class CreatePlants < ActiveRecord::Migration[6.0]
       t.integer :zone
       t.integer :water
       t.integer :sunlight
-
+      t.integer :user_id
+      
       t.timestamps
     end
   end
