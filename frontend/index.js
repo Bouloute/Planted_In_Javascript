@@ -18,10 +18,6 @@ function readUsers(){
 }
 
 
-
-
-
-
 function readPlants(){
     fetch(`${BASE_URL}/plants`)
     .then(resp => resp.json())
@@ -32,3 +28,25 @@ function readPlants(){
         }
     })
 }
+
+ //TODO plant.js??
+function deletePlant(){
+    let plantId = parseInt(event.target.id)
+
+    fetch(`${BASE_URL}/plants/${plantId}`, {
+        method: 'DELETE'
+    })
+
+    this.location.reload()
+}
+/*
+function editPlant(){
+    let plantId = parseInt(event.target.id)
+
+    fetch(`${BASE_URL}/plants/${plantId}`, {
+        method: 'POST'
+        ...
+    })
+
+    this.location.reload()
+}*/

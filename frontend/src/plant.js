@@ -13,7 +13,6 @@ class Plant{
     renderPlants(){
         let plantsDiv = document.getElementById("plants");
 
-
         fetch(`${BASE_URL}/users`)
         .then(resp => resp.json())
         .then(users => {
@@ -29,16 +28,15 @@ class Plant{
                             <h1>${this.name}</h1>
                             <h2>Care Difficulty: ${this.water}</h2>
                             <p>Added by: ${user.username}</p>
+                            <p class="read-more">
+                            <button class="btn btn-warning btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm" id="${this.id}" onclick="deletePlant()">Delete</button>
+                            </p>
                         </div>
                     </div>
                     `
                 }
             }
         })
-
-        //TODO ul li?
-        
     }
-
-    
 }
