@@ -17,14 +17,17 @@ function readUsers(){
     })
 }
 
+
+
+
+
+
 function readPlants(){
     fetch(`${BASE_URL}/plants`)
     .then(resp => resp.json())
     .then(plants => {
-        debugger
         for (let plant of plants){
-            const dbPlant = new Plant(plant.id, plant.name, plant.imgsrc, plant.bloom, plant.zone, plant.water, plant.sunlight)
-            debugger
+            const dbPlant = new Plant(plant.id, plant.name, plant.imgsrc, plant.bloom, plant.zone, plant.water, plant.sunlight, plant.user_id)
             dbPlant.renderPlants();
         }
     })
