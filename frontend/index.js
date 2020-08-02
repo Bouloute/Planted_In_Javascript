@@ -37,7 +37,7 @@ function editPlantView(){
                 <h1><input class="form-control form-control-sm" type="text" id="name" value="${plant.name}"></h1>
                 <h2>Watering: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="water" value="${plant.water}"></h2>
                 <h2>Sunlight: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="sun" value="${plant.sun}"></h2>
-                <p>Picture URL: <input class="form-control form-control-sm" type="text" id="picture" placeholder="${plant.imgsrc}"></p>
+                <p>Picture URL: <input class="form-control form-control-sm" type="text" id="picture" value="${plant.imgsrc}"></p>
                 <p class="read-more">
                     <input class="btn btn-success btn-sm" type="submit" value="Submit">
                 </p>
@@ -71,6 +71,7 @@ function editPlant(){
         sunlight: event.target.sun.value,
         imgsrc: event.target.picture.value
     }
+    debugger
     fetch(`${BASE_URL}/plants/${plantId}`, {
         method: 'PATCH',
         headers: {
