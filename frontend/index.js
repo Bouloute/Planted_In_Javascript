@@ -1,11 +1,13 @@
 const BASE_URL = "http://127.0.0.1:3000"
 
 document.addEventListener("DOMContentLoaded", () =>{
-    
+    readUsers();
     readPlants();
 
 });
 
+
+//______________PLANTS______________
 //cRud
 function readPlants(){
     fetch(`${BASE_URL}/plants`)
@@ -112,4 +114,21 @@ function addPlant(){
     })
     .then(resp => resp.json())
     .then(this.location.reload());
+}
+
+
+
+
+
+
+//______________USERS______________
+function readUsers(){
+    fetch(`${BASE_URL}/users`)
+    .then(resp => resp.json())
+    .then(users => {
+        for (let user of users){
+            const dbUser = new User(user.id, user.username, user.email, user.password, user.zone)
+            dbUser.renderUser();
+        }
+    })
 }
