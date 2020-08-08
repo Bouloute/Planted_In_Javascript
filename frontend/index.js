@@ -70,7 +70,7 @@ function editPlant(){
     .then(this.location.reload());
 }
 
-/*
+/*CREATE WIP
 function showHideAddPlant(){
     let plantDiv = document.getElementById("new-plant");
     plantDiv.innerHTML += `
