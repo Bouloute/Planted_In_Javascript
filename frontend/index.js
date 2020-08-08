@@ -39,6 +39,7 @@ function editPlantView(){
 //cruD
  //TODO plant.js??
 function deletePlant(){
+    event.preventDefault();
     let plantId = parseInt(event.target.id)
 
     fetch(`${BASE_URL}/plants/${plantId}`, {
@@ -69,7 +70,7 @@ function editPlant(){
     .then(this.location.reload());
 }
 
-
+/*
 function showHideAddPlant(){
     let plantDiv = document.getElementById("new-plant");
     plantDiv.innerHTML += `
@@ -95,27 +96,44 @@ function showHideAddPlant(){
     
     document.getElementById("newPlant").addEventListener("submit", addPlant)
 }
-
+/*
 function addPlant(){
+    event.preventDefault();
+    //temp
+    const user1 = document.getElementsByTagName("button")[0]
+    const user = {
+        id: user1.dataset.id,
+        username: user1.dataset.username,
+        email: user1.dataset.email,
+        password: user1.dataset.password,
+        zone: user1.dataset.zone
+    }
+    
     const plant = {
         name: event.target.name.value,
-        water: event.target.water.value,
+        /* water: event.target.water.value,
+        zone: 5,
         sunlight: event.target.sun.value,
-        imgsrc: event.target.picture.value
-        //needs user
+        imgsrc: event.target.picture.value,*
+        user_id: 1
+
     }
-    debugger
+    //debugger
     fetch(`${BASE_URL}/plants`, {
-        method: 'POST',
+        method: "POST",
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(plant)
     })
     .then(resp => resp.json())
-    .then(this.location.reload());
+    .then(() => {
+        debugger
+        //this.location.reload()
+    });
 }
-
+*/
 
 
 
