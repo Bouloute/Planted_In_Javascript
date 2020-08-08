@@ -1,24 +1,12 @@
-# README
+run these in the backend folder in this order:
+1) bundle install
+2) rails db:migrate
+3) rails db:seed (optional)
+4) rails s
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+open index.html file
 
-Things you may want to cover:
+You can now see all plants and users created.
+You will be able to edit and delete all plants.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+WARNING! If you have not seeded the file, you won't be able to see anything as you cannot create a plant or a user.
