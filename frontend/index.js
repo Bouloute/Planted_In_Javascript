@@ -15,7 +15,7 @@ function readPlants(){
     .then(plants => {
         for (let plant of plants){
             const dbPlant = new Plant(plant.id, plant.name, plant.imgsrc, plant.bloom, plant.zone, plant.water, plant.sunlight, plant.user_id)
-            dbPlant.renderPlants();
+            dbPlant.renderPlant();
         }
     })
 }

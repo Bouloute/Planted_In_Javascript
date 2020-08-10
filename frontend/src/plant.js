@@ -12,7 +12,7 @@ class Plant{
     }
 
     //cRud
-    renderPlants(){
+    renderPlant(){
         let plantsDiv = document.getElementById("plants");
 
         fetch(`${BASE_URL}/users/${this.user_id}`)
