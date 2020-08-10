@@ -74,6 +74,8 @@ function editPlant(){
 /*CREATE WIP*/
 function showHideAddPlant(){
     let plantDiv = document.getElementById("new-plant");
+
+    //TODO: if this card is already there, hide it 
     plantDiv.innerHTML += `
     
     <div class="blog-card">
@@ -119,9 +121,9 @@ function addPlant(){
         body: JSON.stringify(plant)
     })
     .then(resp => resp.json())
-    .then(() => {
-        //debugger
-        this.location.reload()
+    .then(newPlant => {
+        const dbPlant = new Plant(newPlant.id, newPlant.name, newPlant.imgsrc, newPlant.bloom, newPlant.zone, newPlant.water, newPlant.sunlight, newPlant.user_id)
+        dbPlant.renderPlant();
     });
 }
 
