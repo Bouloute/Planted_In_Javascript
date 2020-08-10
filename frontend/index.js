@@ -30,13 +30,12 @@ function editPlantView(){
     fetch(`${BASE_URL}/plants/${plantId}`)
     .then(resp => resp.json())
     .then(plant => {
-        plantDiv.innerHTML = Plant.editView(plant)//TODO plant.editView()
+        plantDiv.innerHTML = Plant.editView(plant)//TODO plant.editView() ?
         document.getElementById("editPlant").addEventListener("submit", editPlant)
     })
 }
 
 //cruD
- //TODO plant.js??
 function deletePlant(){
     event.preventDefault();
     let plantId = parseInt(event.target.id)
@@ -75,35 +74,40 @@ function editPlant(){
     });
 }
 
-/*CREATE WIP*/
 function showHideAddPlant(){
     let plantDiv = document.getElementById("new-plant");
+    let plantform = document.getElementById("new-plant-form");
+    
+    if (!plantform){
+        plantDiv.innerHTML += `
 
-    //TODO: if this card is already there, hide it 
-    plantDiv.innerHTML += `
-    
-    <div class="blog-card">
-        <div class="meta">
-            <div class="photo" style="background-image: url()"></div>
+        <div class="blog-card" id="new-plant-form">
+            <div class="meta">
+                <div class="photo" style="background-image: url()"></div>
+            </div>
+            <div class="description">
+                <form id="newPlant">
+                    <h1><input class="form-control form-control-sm" type="text" id="name"></h1>
+                    <h2>Watering: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="water"></h2>
+                    <h2>Sunlight: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="sun"></h2>
+                    <p>Picture URL: <input class="form-control form-control-sm" type="text" id="picture"></p>
+                    <p class="read-more">
+                        <input class="btn btn-success btn-sm" type="submit" value="Submit">
+                    </p>
+                    
+                </form>
+            </div>
         </div>
-        <div class="description">
-            <form id="newPlant">
-                <h1><input class="form-control form-control-sm" type="text" id="name"></h1>
-                <h2>Watering: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="water"></h2>
-                <h2>Sunlight: <input class="form-control-range form-control-sm" type="range" min="0" max="10" id="sun"></h2>
-                <p>Picture URL: <input class="form-control form-control-sm" type="text" id="picture"></p>
-                <p class="read-more">
-                    <input class="btn btn-success btn-sm" type="submit" value="Submit">
-                </p>
-                
-            </form>
-        </div>
-    </div>
-    `
+        `
     
-    document.getElementById("newPlant").addEventListener("submit", addPlant)
+        document.getElementById("newPlant").addEventListener("submit", addPlant)
+    }
+    else {
+        plantform.remove()
+    }
 }
 
+//Crud
 function addPlant(){
     event.preventDefault();
     const user_id = User.getCheckedUser();
@@ -128,6 +132,9 @@ function addPlant(){
     .then(newPlant => {
         const dbPlant = new Plant(newPlant.id, newPlant.name, newPlant.imgsrc, newPlant.bloom, newPlant.zone, newPlant.water, newPlant.sunlight, newPlant.user_id)
         dbPlant.renderPlant();
+        
+        //hides the form for adding a new plant
+        document.getElementById("new-plant-form").remove();
     });
 }
 
