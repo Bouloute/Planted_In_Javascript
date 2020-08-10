@@ -3,7 +3,6 @@ const BASE_URL = "http://127.0.0.1:3000"
 document.addEventListener("DOMContentLoaded", () =>{
     readUsers();
     readPlants();
-
 });
 
 
@@ -40,13 +39,15 @@ function editPlantView(){
 //cruD
  //TODO plant.js??
 function deletePlant(){
+    event.preventDefault();
     let plantId = parseInt(event.target.id)
 
     fetch(`${BASE_URL}/plants/${plantId}`, {
         method: 'DELETE'
     })
-    .then(resp => resp.json())
-    .then(this.location.reload());//TODO: change all location reload
+    .then(resp => {
+        resp.json()})
+    .then(document.getElementById(`plant-${plantId}`).remove());
 }
 
 
@@ -119,7 +120,7 @@ function addPlant(){
     })
     .then(resp => resp.json())
     .then(() => {
-        debugger
+        //debugger
         this.location.reload()
     });
 }
