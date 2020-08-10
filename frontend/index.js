@@ -30,9 +30,8 @@ function editPlantView(){
     fetch(`${BASE_URL}/plants/${plantId}`)
     .then(resp => resp.json())
     .then(plant => {
-        plantDiv.innerHTML = Plant.editView(plant)
+        plantDiv.innerHTML = Plant.editView(plant)//TODO plant.editView()
         document.getElementById("editPlant").addEventListener("submit", editPlant)
-        
     })
 }
 
@@ -52,7 +51,9 @@ function deletePlant(){
 
 
 function editPlant(){
+    event.preventDefault()
     const plantId = parseInt(event.target.dataset.id)
+
     const plant = {
         name: event.target.name.value,
         water: event.target.water.value,
@@ -68,7 +69,10 @@ function editPlant(){
         body: JSON.stringify(plant)
     })
     .then(resp => resp.json())
-    .then(this.location.reload());
+    .then(newPlant => {
+        const dbPlant = new Plant(newPlant.id, newPlant.name, newPlant.imgsrc, newPlant.bloom, newPlant.zone, newPlant.water, newPlant.sunlight, newPlant.user_id)
+        dbPlant.renderReadView();
+    });
 }
 
 /*CREATE WIP*/
