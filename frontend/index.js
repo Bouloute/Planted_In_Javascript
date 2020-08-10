@@ -22,6 +22,7 @@ function readPlants(){
 
 //crUd
 function editPlantView(){
+    event.preventDefault();
     let plantId = parseInt(event.target.id)
 
     let plantDiv = document.getElementById(`plant-${plantId}`)
@@ -39,14 +40,13 @@ function editPlantView(){
 //cruD
  //TODO plant.js??
 function deletePlant(){
-    event.preventDefault();
     let plantId = parseInt(event.target.id)
 
     fetch(`${BASE_URL}/plants/${plantId}`, {
         method: 'DELETE'
     })
-
-    this.location.reload()
+    .then(resp => resp.json())
+    .then(this.location.reload());//TODO: change all location reload
 }
 
 
@@ -70,7 +70,7 @@ function editPlant(){
     .then(this.location.reload());
 }
 
-/*CREATE WIP
+/*CREATE WIP*/
 function showHideAddPlant(){
     let plantDiv = document.getElementById("new-plant");
     plantDiv.innerHTML += `
@@ -96,29 +96,19 @@ function showHideAddPlant(){
     
     document.getElementById("newPlant").addEventListener("submit", addPlant)
 }
-/*
+
 function addPlant(){
     event.preventDefault();
-    //temp
-    const user1 = document.getElementsByTagName("button")[0]
-    const user = {
-        id: user1.dataset.id,
-        username: user1.dataset.username,
-        email: user1.dataset.email,
-        password: user1.dataset.password,
-        zone: user1.dataset.zone
-    }
+    const user_id = User.getCheckedUser();
     
     const plant = {
         name: event.target.name.value,
-        /* water: event.target.water.value,
-        zone: 5,
+        water: event.target.water.value,
         sunlight: event.target.sun.value,
-        imgsrc: event.target.picture.value,*
-        user_id: 1
-
+        imgsrc: event.target.picture.value,
+        user_id: user_id
     }
-    //debugger
+
     fetch(`${BASE_URL}/plants`, {
         method: "POST",
         headers: {
@@ -130,10 +120,10 @@ function addPlant(){
     .then(resp => resp.json())
     .then(() => {
         debugger
-        //this.location.reload()
+        this.location.reload()
     });
 }
-*/
+
 
 
 

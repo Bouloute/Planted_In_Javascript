@@ -22,4 +22,12 @@ class User{
             `
         }
     }
+
+    static getCheckedUser(){
+        for(let user of document.getElementsByName("user") ){
+            if(user.checked) {
+                return parseInt(user.id)
+            }
+        }
+    }
 }
